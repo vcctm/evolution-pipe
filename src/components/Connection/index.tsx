@@ -2,6 +2,7 @@
 import { ReadyState } from 'react-use-websocket'
 import { useMap } from '../../hooks/useMap'
 import { ILevelsEntity } from '../../types'
+import Button from '../Button'
 import * as S from './styles'
 
 interface IConnectionProps {
@@ -14,30 +15,30 @@ const Connection = ({ levels }: IConnectionProps) => {
   return (
     <S.Wrapper>
       <div>
-        <button
+        <Button
           onClick={() => mapSettings.startLevel('1')}
           disabled={mapSettings.readyState !== ReadyState.OPEN}
         >
           level 1
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => mapSettings.startLevel('2')}
           disabled={mapSettings.readyState !== ReadyState.OPEN}
         >
           level 2
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => mapSettings.startLevel('3')}
           disabled={mapSettings.readyState !== ReadyState.OPEN}
         >
           level 3
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => mapSettings.startMap()}
           disabled={mapSettings.readyState !== ReadyState.OPEN}
         >
           start map
-        </button>
+        </Button>
         <div>
           <div>The WebSocket is currently {mapSettings.connectionStatus}</div>
           {mapSettings.lastMessage ? (
