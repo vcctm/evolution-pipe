@@ -1,9 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import { ReadyState } from 'react-use-websocket'
 import { useMap } from '../../hooks/useMap'
+import { ILevelsEntity } from '../../types'
 import * as S from './styles'
 
-const Connection = () => {
+interface IConnectionProps {
+  levels: ILevelsEntity[]
+}
+
+const Connection = ({ levels }: IConnectionProps) => {
   const mapSettings = useMap()
 
   return (
