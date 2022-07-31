@@ -5,7 +5,7 @@ export const LevelSelectWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-self: flex-end;
-    background-color: ${theme.colors.lightGray};
+    background-color: ${theme.colors.black};
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -16,8 +16,8 @@ export const LevelSelectWrapper = styled.div`
 export const MapWrapper = styled.div`
   ${({ theme }) => css`
     display: grid;
-    background-color: ${theme.colors.primary};
-    padding: 40px;
+    background-color: ${theme.colors.darkGray};
+    padding: 20px;
     border-radius: 12px;
     margin: 40px;
     max-width: 90%;

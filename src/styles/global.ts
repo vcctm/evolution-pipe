@@ -35,6 +35,8 @@ const GlobalStyles = createGlobalStyle`
   ${({ theme }) => css`
     html {
       font-size: 62.5%;
+      background-color: ${theme.colors.mainBg};
+      color: ${theme.colors.lightGray};
     }
     body {
       font-family: ${theme.font.family};

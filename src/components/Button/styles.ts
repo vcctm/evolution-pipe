@@ -53,7 +53,7 @@ export const Wrapper = styled.button<WrapperProps>`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, #ff5f5f 0%, #f062c0 50%);
+    background: ${theme.colors.primary};
     color: ${theme.colors.white};
     font-family: ${theme.font.family};
     border: 0;
@@ -61,13 +61,13 @@ export const Wrapper = styled.button<WrapperProps>`
     border-radius: ${theme.border.radius};
     padding: ${theme.spacings.xxsmall};
     text-decoration: none;
+    transition: all ease-in-out 0.2s;
     &:focus {
       box-shadow: 0 0 0 3px ${theme.colors.secondary};
     }
     &:hover {
-      background: ${minimal
-        ? 'none'
-        : `linear-gradient(180deg, #e35565 0%, #d958a6 50%)`};
+      color: ${theme.colors.mainBg};
+      background: ${theme.colors.lightBg};
     }
     ${!!size && wrapperModifiers[size](theme)};
     ${!!fullWidth && wrapperModifiers.fullWidth()};

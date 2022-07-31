@@ -4,7 +4,7 @@ import { ReadyState, SendMessage } from 'react-use-websocket'
 
 export const useMap = (sendMessage: SendMessage, readyState: ReadyState) => {
   const rotatePipe = useCallback((x: number, y: number) => {
-    sendMessage(`rotate ${x} ${y}`)
+    sendMessage(`rotate ${x} ${y}`, false)
   }, [])
 
   const startLevel = useCallback((difficulty: string) => {

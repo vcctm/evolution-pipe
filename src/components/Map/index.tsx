@@ -9,7 +9,6 @@ interface IMapProps {
 }
 
 const Map = ({ map, handleRotatePipe }: IMapProps) => {
-  console.log('🚀 ~ file: index.tsx ~ line 12 ~ Map ~ map', map)
   const lineIds = useId()
   const pipeIds = useId()
 

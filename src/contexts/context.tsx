@@ -4,6 +4,7 @@ import { reducer } from './reducer'
 
 interface IGlobalProviderProps {
   children: React.ReactNode
+  rotatePipe?: (x: number, y: number) => void
 }
 
 export interface IInitialStateProps {

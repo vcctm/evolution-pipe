@@ -1,4 +1,5 @@
 import useWebSocket from 'react-use-websocket'
+import { memo, useCallback } from 'react'
 
 import LevelSelect from '../../components/LevelSelect'
 import Map from '../../components/Map'
@@ -8,8 +9,9 @@ import { ILevelsEntity } from '../../types'
 import { MAP_GAME_SOCKET_URL } from '../../constants'
 import * as S from './styles'
 import { useMapContext } from '../../hooks/useContext'
+import NewGame from '../../components/NewGame'
 
-const PipePuzzle = () => {
+const PipePuzzleComponent = () => {
   const { startMap, message, map } = useMapContext()
 
   const handleMessageEvent = (messageEvent: MessageEvent<any>) => {
@@ -19,7 +21,8 @@ const PipePuzzle = () => {
   }
 
   const { sendMessage, readyState } = useWebSocket(MAP_GAME_SOCKET_URL, {
-    onMessage: handleMessageEvent
+    onMessage: handleMessageEvent,
+    filter: () => false
   })
 
   const { startLevel, rotatePipe, connectionStatus } = useMap(
@@ -33,9 +36,9 @@ const PipePuzzle = () => {
     sendMessage('map')
   }
 
-  const handleRotatePipe = (x: number, y: number) => {
+  const handleRotatePipe = useCallback((x: number, y: number) => {
     rotatePipe(x, y)
-  }
+  }, [])
 
   const levels = [
     {
@@ -53,15 +56,31 @@ const PipePuzzle = () => {
     {
       level: 4,
       startLevelFunction: handleStartLevel
+    } as ILevelsEntity,
+    {
+      level: 5,
+      startLevelFunction: handleStartLevel
+    } as ILevelsEntity,
+    {
+      level: 6,
+      startLevelFunction: handleStartLevel
     } as ILevelsEntity
   ]
 
+  const MapComponent = () => {
+    if (!map) {
+      return <NewGame />
+    }
+    return (
+      <S.MapWrapper>
+        <Map map={map} handleRotatePipe={handleRotatePipe} />{' '}
+      </S.MapWrapper>
+    )
+  }
+
   return (
     <PipePuzzleTemplate>
-      <h1>Pipe Puzzle</h1>
-      <S.MapWrapper>
-        <Map map={map} handleRotatePipe={handleRotatePipe} />
-      </S.MapWrapper>
+      <MapComponent />
       <S.LevelSelectWrapper>
         <LevelSelect
           levels={levels}
@@ -73,5 +92,7 @@ const PipePuzzle = () => {
     </PipePuzzleTemplate>
   )
 }
+
+const PipePuzzle = memo(PipePuzzleComponent)
 
 export default PipePuzzle
