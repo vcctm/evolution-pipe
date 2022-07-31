@@ -1,25 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { MAP_GAME_SOCKET_URL } from '../constants'
-import { useCallback, useEffect, useState } from 'react'
-import useWebSocket, { ReadyState } from 'react-use-websocket'
+import { useCallback } from 'react'
+import { ReadyState, SendMessage } from 'react-use-websocket'
 
-export const useMap = () => {
-  const [messageHistory, setMessageHistory] = useState([])
-  const [status, setStatus] = useState('')
-
-  const { sendMessage, lastMessage, readyState } = useWebSocket(
-    MAP_GAME_SOCKET_URL,
-    { onMessage: (messageEvent) => setStatus(messageEvent.data) }
-  )
-
-  useEffect(() => {
-    if (lastMessage !== null) {
-      setMessageHistory((prev) =>
-        prev.concat(lastMessage as unknown as ConcatArray<never>)
-      )
-    }
-  }, [lastMessage, setMessageHistory])
-
+export const useMap = (sendMessage: SendMessage, readyState: ReadyState) => {
   const rotatePipe = useCallback((x: number, y: number) => {
     sendMessage(`rotate ${x} ${y}`)
   }, [])
@@ -41,13 +24,10 @@ export const useMap = () => {
   }[readyState]
 
   return {
-    lastMessage,
     readyState,
-    messageHistory,
     rotatePipe,
     startLevel,
     startMap,
-    status,
     connectionStatus
   }
 }

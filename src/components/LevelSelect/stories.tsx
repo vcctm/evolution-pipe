@@ -1,13 +1,15 @@
 import { Story, Meta } from '@storybook/react'
-import Connection from '.'
+import LevelSelect from '.'
 import { ILevelsEntity } from '../../types'
 
 export default {
-  title: 'Connection',
-  component: Connection
+  title: 'LevelSelect',
+  component: LevelSelect
 } as Meta
 
-function startLevel(level: string) {}
+function startLevel(level: string) {
+  console.log(level)
+}
 
 const levelsMock: ILevelsEntity[] = [
   {
@@ -16,4 +18,4 @@ const levelsMock: ILevelsEntity[] = [
   }
 ]
 
-export const Default: Story = () => <Connection levels={levelsMock} />
+export const Default: Story = () => <LevelSelect levels={levelsMock} />

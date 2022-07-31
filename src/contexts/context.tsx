@@ -1,35 +1,51 @@
 import React, { useCallback, useReducer } from 'react'
 import { createContext } from 'use-context-selector'
 import { reducer } from './reducer'
-import { userActionTypes } from './types'
 
 interface IGlobalProviderProps {
   children: React.ReactNode
 }
 
-interface IInitialStateProps {
+export interface IInitialStateProps {
   map: string | null
+  message: string | null
   startMap?: (map: string) => void
+  updateMessage?: (message: string) => void
 }
 
 export const initialState: IInitialStateProps = {
-  map: null
+  map: null,
+  message: null
 }
 
 export const MapContext = createContext(initialState)
 
-export const CreateMapProvider = ({ children }: IGlobalProviderProps) => {
+export const MapProvider = ({ children }: IGlobalProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const startMap = useCallback((map: string | null) => {
     dispatch({
-      type: userActionTypes.SETMAP,
+      type: 'SETMAP',
       map: map
     })
   }, [])
 
+  const updateMessage = useCallback((message: string | null) => {
+    dispatch({
+      type: 'UPDATEMESSAGE',
+      message: message
+    })
+  }, [])
+
   return (
-    <MapContext.Provider value={{ map: state.map, startMap }}>
+    <MapContext.Provider
+      value={{
+        map: state.map,
+        message: state.message,
+        startMap,
+        updateMessage
+      }}
+    >
       {children}
     </MapContext.Provider>
   )

@@ -1,8 +1,13 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Wrapper = styled.main`
-  width: 12rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => css`
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  `}
 `

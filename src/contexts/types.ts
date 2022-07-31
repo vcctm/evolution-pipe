@@ -1,3 +1,4 @@
 export enum userActionTypes {
-  SETMAP = 'SETMAP'
+  SETMAP = 'SETMAP',
+  UPDATEMESSAGE = 'UPDATEMESSAGE'
 }

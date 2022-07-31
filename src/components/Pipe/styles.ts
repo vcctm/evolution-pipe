@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-export const Char = styled.span`
+export const Char = styled.div`
   display: flex;
-  font-size: 32px;
+  font-size: 36px;
   line-height: 0px;
-  margin: 16px 10px;
+  margin: 0;
   font-family: monospace;
 `

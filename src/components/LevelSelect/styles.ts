@@ -2,5 +2,6 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   display: flex;
-  margin-top: 40px;
+  justify-content: center;
+  gap: 10px;
 `

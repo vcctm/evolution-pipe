@@ -1,8 +1,15 @@
 import { useId } from 'react'
-import Pipe from '../Pipe'
+import { Pipe } from '../Pipe'
+import Spinner from '../Spinner'
 import * as S from './styles'
 
-const Map = ({ map }: { map?: string }) => {
+interface IMapProps {
+  map?: string | null
+  handleRotatePipe?: (x: number, y: number) => void
+}
+
+const Map = ({ map, handleRotatePipe }: IMapProps) => {
+  console.log('🚀 ~ file: index.tsx ~ line 12 ~ Map ~ map', map)
   const lineIds = useId()
   const pipeIds = useId()
 
@@ -11,12 +18,21 @@ const Map = ({ map }: { map?: string }) => {
     .filter((line: string) => line !== 'map:')
     .map((line: string) => line.split(''))
 
+  if (map === 'new: OK') return <Spinner />
+
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       {renderMap?.map((line: string[], index) => (
         <S.Wrapper key={`${lineIds}-${index}`}>
           {line.map((pipe, pipeIndex) => (
-            <Pipe key={`${pipeIds}-${pipeIndex}`}>{pipe}</Pipe>
+            <Pipe
+              lineIndex={index}
+              pipeIndex={pipeIndex}
+              handleRotatePipe={handleRotatePipe}
+              key={`${pipeIds}-${pipeIndex}`}
+            >
+              {pipe}
+            </Pipe>
           ))}
         </S.Wrapper>
       ))}
