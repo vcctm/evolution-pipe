@@ -5,7 +5,7 @@ export const Char = styled.div`
     color: ${theme.colors.lightGray};
   `}
   display: flex;
-  font-size: 36px;
+  font-size: 30px;
   line-height: 0px;
   margin: 0;
   font-family: monospace;

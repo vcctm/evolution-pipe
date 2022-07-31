@@ -33,12 +33,7 @@ function PipeComponent({
         handleRotatePipe && handleRotatePipe(lineIndex, pipeIndex)
       }}
     >
-      <motion.div
-        style={{
-          display: 'flex'
-        }}
-        animate={{ rotate: clicked }}
-      >
+      <motion.div animate={{ rotate: clicked }}>
         <S.Char>{children}</S.Char>
       </motion.div>
     </button>

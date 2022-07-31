@@ -10,9 +10,10 @@ export const Wrapper = styled.main`
   text-align: center;
 `
 
-export const Typography = styled.h2`
+export const Typography = styled.h3`
   ${({ theme }) => css`
     color: ${theme.colors.lightBg};
     margin-top: ${theme.spacings.small};
+    font-weight: 300;
   `}
 `
