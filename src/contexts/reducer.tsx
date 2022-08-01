@@ -2,7 +2,7 @@ import { userActionTypes } from './types'
 import { IInitialStateProps } from './context'
 
 interface userActions {
-  type?: 'SETMAP' | 'UPDATEMESSAGE'
+  type?: 'SETMAP' | 'UPDATEMESSAGE' | 'VERIFYMAP'
   map?: string | null
   message?: string | null
 }
@@ -17,6 +17,10 @@ export const reducer = (
       map: action.map as string
     },
     ['UPDATEMESSAGE']: {
+      ...state,
+      message: action.message as string
+    },
+    ['VERIFYMAP']: {
       ...state,
       message: action.message as string
     }

@@ -24,3 +24,12 @@ export const MapWrapper = styled.div`
     overflow: scroll;
   `}
 `
+
+export const Typography = styled.h3`
+  ${({ theme }) => css`
+    color: ${theme.colors.lightBg};
+    margin-top: ${theme.spacings.small};
+    font-weight: 300;
+    text-align: center;
+  `}
+`

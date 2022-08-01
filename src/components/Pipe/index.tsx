@@ -15,7 +15,7 @@ function PipeComponent({
   lineIndex,
   pipeIndex
 }: IPipeProps) {
-  const [clicked, setClicked] = useState(0)
+  const [clicked, setClicked] = useState(1)
 
   return (
     <button
@@ -27,13 +27,15 @@ function PipeComponent({
         maxHeight: 'fit-content'
       }}
       onClick={() => {
-        setClicked((previousClicked) =>
-          previousClicked === 270 ? 360 : previousClicked + 90
-        )
-        handleRotatePipe && handleRotatePipe(lineIndex, pipeIndex)
+        setClicked((previousClicked) => (previousClicked === 0 ? 1 : 1))
+        handleRotatePipe && handleRotatePipe(pipeIndex, lineIndex)
       }}
     >
-      <motion.div animate={{ rotate: clicked }}>
+      <motion.div
+        whileTap={{ scale: 0.9 }}
+        whileHover={{ scale: 1.1 }}
+        animate={{ opacity: clicked }}
+      >
         <S.Char>{children}</S.Char>
       </motion.div>
     </button>

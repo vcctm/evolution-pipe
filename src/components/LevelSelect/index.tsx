@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useId } from 'react'
 import { ReadyState } from 'react-use-websocket'
+import { FaCaretRight } from 'react-icons/fa'
 import { ILevelsEntity } from '../../types'
 import Button from '../Button'
 import Spinner from '../Spinner'
@@ -31,6 +32,7 @@ const LevelSelect = ({ levels, connectionStatus }: ILevelSelectProps) => {
         {levels.map((level) => {
           return (
             <Button
+              icon={<FaCaretRight />}
               key={`${levelId}-${level.level}`}
               onClick={() => level.startLevelFunction(level.level.toString())}
             >
